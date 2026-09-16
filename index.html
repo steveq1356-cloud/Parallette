@@ -10,6 +10,27 @@
 </head>
 <body>
 
+  <!-- EMAIL POPUP -->
+  <div class="popup-overlay" id="popup-overlay">
+    <div class="popup" id="popup">
+      <button class="popup-close" onclick="closePopup()">✕</button>
+      <div class="popup-badge">LIMITED OFFER</div>
+      <h3 class="popup-title">Get 10% off your first order</h3>
+      <p class="popup-sub">Join the FORM community. Enter your details below and we'll send your discount code instantly.</p>
+      <div id="popup-form">
+        <input type="email" class="form-input" id="popup-email" placeholder="Email address">
+        <input type="tel" class="form-input" id="popup-phone" placeholder="Phone number (optional)">
+        <button class="btn-checkout popup-btn" onclick="submitPopup()">Claim my 10% off</button>
+        <button class="popup-skip" onclick="closePopup()">No thanks, I'll pay full price</button>
+      </div>
+      <div id="popup-success" style="display:none">
+        <div class="popup-success-icon">✓</div>
+        <p class="popup-success-text">Your code is on its way! Check your inbox for <strong>FORM10</strong>.</p>
+        <button class="btn-checkout popup-btn" onclick="closePopup()">Start shopping</button>
+      </div>
+    </div>
+  </div>
+
   <!-- NAV -->
   <nav class="nav">
     <a href="#" class="nav-logo">FORM</a>
@@ -30,7 +51,7 @@
       <a href="#shop" class="btn-primary">Shop the collection</a>
     </div>
     <div class="hero-image">
-      <img src="images/lifestyle-handstand.png" alt="Athlete performing handstand on FORM parallettes overlooking the city" class="hero-img hero-lifestyle">
+      <img src="images/white.png" alt="FORM parallette — Pearl white" class="hero-img hero-product">
     </div>
   </section>
 
@@ -72,7 +93,7 @@
       </div>
       <div class="feature-item">
         <div class="feature-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="2" rx="1" fill="currentColor"/><rect x="3" y="7" width="18" height="2" rx="1" fill="currentColor" opacity="0.4"/><rect x="3" y="15" width="18" height="2" rx="1" fill="currentColor" opacity="4"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="2" rx="1" fill="currentColor"/><rect x="3" y="7" width="18" height="2" rx="1" fill="currentColor" opacity="0.4"/><rect x="3" y="15" width="18" height="2" rx="1" fill="currentColor" opacity="0.4"/></svg>
         </div>
         <h3>Zero-slip base</h3>
         <p>Rubber grip pads hold on hardwood, tile, concrete, gym rubber.</p>
@@ -126,8 +147,8 @@
 
       <div class="configurator">
         <div class="configurator-preview">
-          <img src="images/black.png" alt="Product preview" class="config-img" id="config-preview">
-          <div class="config-badge" id="config-badge">5.5" · Obsidian</div>
+          <img src="images/white.png" alt="Product preview" class="config-img" id="config-preview">
+          <div class="config-badge" id="config-badge">5.5" · Pearl</div>
         </div>
 
         <div class="configurator-options">
@@ -150,12 +171,12 @@
           <div class="option-group">
             <label class="option-label">Block color</label>
             <div class="color-options">
-              <button class="color-btn active" data-color="Obsidian" data-img="images/black.png" onclick="selectColor(this)" style="--c: #1a1a1a" title="Obsidian"></button>
-              <button class="color-btn" data-color="Pearl" data-img="images/white.png" onclick="selectColor(this)" style="--c: #e8e6e0" title="Pearl"></button>
+              <button class="color-btn" data-color="Obsidian" data-img="images/black.png" onclick="selectColor(this)" style="--c: #1a1a1a" title="Obsidian"></button>
+              <button class="color-btn active" data-color="Pearl" data-img="images/white.png" onclick="selectColor(this)" style="--c: #e8e6e0" title="Pearl"></button>
               <button class="color-btn" data-color="Blush" data-img="images/pink.png" onclick="selectColor(this)" style="--c: #e8a0b0" title="Blush"></button>
               <button class="color-btn" data-color="Sky" data-img="images/blue.png" onclick="selectColor(this)" style="--c: #8bb8d4" title="Sky"></button>
             </div>
-            <p class="color-name-display" id="color-name-display">Obsidian</p>
+            <p class="color-name-display" id="color-name-display">Pearl</p>
           </div>
 
           <div class="option-group">
@@ -190,8 +211,7 @@
             </button>
             <button class="btn-checkout" onclick="openCheckout()">Buy now</button>
           </div>
-
-          <p class="shop-note">Handmade to order · Ships in 3–5 days · Free returns</p>
+          <p class="shop-note">Handmade to order &middot; Ships in 3&ndash;5 days &middot; Free returns</p>
         </div>
       </div>
     </div>
@@ -206,25 +226,25 @@
   <!-- SPECS -->
   <section class="specs" id="specs">
     <div class="specs-inner">
-      <div class="specs-text">
-        <h2>Technical specifications</h2>
-        <p>Tested under real conditions by real athletes.</p>
-        <div class="specs-table">
+      <h2 class="specs-title">Technical specifications</h2>
+      <p class="specs-sub">Tested under real conditions by real athletes.</p>
+      <div class="specs-columns">
+        <div class="specs-col">
           <div class="spec-row"><span class="spec-key">Max load rating</span><span class="spec-val">400 lb / 181 kg</span></div>
           <div class="spec-row"><span class="spec-key">Weight per pair</span><span class="spec-val">1.6 lb / 726 g</span></div>
           <div class="spec-row"><span class="spec-key">Block dimensions</span><span class="spec-val">3.5" × 2.8" × 2.4"</span></div>
           <div class="spec-row"><span class="spec-key">Dowel diameter</span><span class="spec-val">1" (25.4 mm)</span></div>
           <div class="spec-row"><span class="spec-key">Dowel material</span><span class="spec-val">Solid birch hardwood</span></div>
           <div class="spec-row"><span class="spec-key">Block material</span><span class="spec-val">High-infill PLA+ (structural grade)</span></div>
+        </div>
+        <div class="specs-col">
           <div class="spec-row"><span class="spec-key">Grip base</span><span class="spec-val">Rubber feet × 4 per unit</span></div>
           <div class="spec-row"><span class="spec-key">Assembly time</span><span class="spec-val">Under 15 seconds</span></div>
           <div class="spec-row"><span class="spec-key">Packed size (pair)</span><span class="spec-val">10" × 5" × 4"</span></div>
           <div class="spec-row"><span class="spec-key">Available lengths</span><span class="spec-val">5.5" · 7.0"</span></div>
           <div class="spec-row"><span class="spec-key">Available colors</span><span class="spec-val">Obsidian · Pearl · Blush · Sky</span></div>
+          <div class="spec-row"><span class="spec-key">Warranty</span><span class="spec-val">1 year structural guarantee</span></div>
         </div>
-      </div>
-      <div class="specs-image">
-        <img src="images/white.png" alt="FORM parallette — Pearl" class="specs-img">
       </div>
     </div>
   </section>
@@ -238,7 +258,7 @@
         <span class="testimonial-author">— Marcus T., calisthenics coach</span>
       </div>
       <div class="testimonial">
-        <p>"The grip is better than anything I've used at a commercial gym. The birch actually feels like it was made for your hands."</p>
+        <p>"The grip is better than anything I've used at a commercial gym. The birch feels like it was made for your hands."</p>
         <span class="testimonial-author">— Priya S., movement athlete</span>
       </div>
       <div class="testimonial">
@@ -277,16 +297,25 @@
 
   <!-- CHECKOUT MODAL -->
   <div class="modal-overlay" id="modal-overlay" onclick="closeCheckout()">
-    <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal checkout-modal" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeCheckout()">✕</button>
+
+      <!-- Step indicator -->
+      <div class="steps-indicator" id="steps-indicator">
+        <div class="step-dot active" id="dot-1">1</div>
+        <div class="step-line"></div>
+        <div class="step-dot" id="dot-2">2</div>
+        <div class="step-line"></div>
+        <div class="step-dot" id="dot-3">3</div>
+      </div>
 
       <!-- Step 1: Cart -->
       <div id="step-cart">
         <h3 class="modal-title">Your cart</h3>
-        <div class="cart-item" id="cart-item-display">
-          <img src="images/black.png" alt="Product" class="cart-item-img" id="cart-item-img">
+        <div class="cart-item">
+          <img src="images/white.png" alt="Product" class="cart-item-img" id="cart-item-img">
           <div class="cart-item-info">
-            <p class="cart-item-name" id="cart-item-name">5.5" Standard · Obsidian</p>
+            <p class="cart-item-name" id="cart-item-name">5.5" Standard · Pearl</p>
             <p class="cart-item-qty" id="cart-item-qty">Qty: 1 pair</p>
             <p class="cart-item-price" id="cart-item-price-display">$22.00</p>
           </div>
@@ -296,44 +325,93 @@
           <div class="price-row"><span>Shipping</span><span>$9.00</span></div>
           <div class="price-row price-total"><span>Total</span><span id="cs-total">$31.00</span></div>
         </div>
-        <button class="btn-checkout" style="width:100%; margin-top:1rem" onclick="goToStep('step-shipping')">Continue to shipping</button>
+        <div class="promo-row">
+          <input type="text" class="form-input promo-input" placeholder="Promo code (e.g. FORM10)" id="promo-input">
+          <button class="promo-btn" onclick="applyPromo()">Apply</button>
+        </div>
+        <p class="promo-msg" id="promo-msg"></p>
+        <button class="btn-checkout" style="width:100%; margin-top:1rem" onclick="goToStep(2)">Continue to shipping &rarr;</button>
       </div>
 
       <!-- Step 2: Shipping -->
       <div id="step-shipping" style="display:none">
-        <button class="modal-back" onclick="goToStep('step-cart')">← Back</button>
+        <button class="modal-back" onclick="goToStep(1)">&#8592; Back</button>
         <h3 class="modal-title">Shipping</h3>
         <div class="form-section">
-          <input type="email" placeholder="Email address" class="form-input" id="f-email" required>
-          <input type="text" placeholder="Full name" class="form-input" id="f-name" required>
-          <input type="text" placeholder="Street address" class="form-input" id="f-addr" required>
           <div class="form-row">
-            <input type="text" placeholder="City" class="form-input" id="f-city" required>
-            <input type="text" placeholder="State" class="form-input" style="max-width:80px" id="f-state" required>
-            <input type="text" placeholder="ZIP" class="form-input" style="max-width:90px" id="f-zip" required>
+            <input type="text" placeholder="First name" class="form-input" id="f-first">
+            <input type="text" placeholder="Last name" class="form-input" id="f-last">
+          </div>
+          <input type="email" placeholder="Email address" class="form-input" id="f-email">
+          <input type="tel" placeholder="Phone number" class="form-input" id="f-phone">
+          <input type="text" placeholder="Street address" class="form-input" id="f-addr">
+          <input type="text" placeholder="Apt, suite, etc. (optional)" class="form-input" id="f-addr2">
+          <div class="form-row">
+            <input type="text" placeholder="City" class="form-input" id="f-city">
+            <input type="text" placeholder="State" class="form-input" style="max-width:72px" id="f-state">
+            <input type="text" placeholder="ZIP" class="form-input" style="max-width:88px" id="f-zip">
           </div>
         </div>
-        <button class="btn-checkout" style="width:100%" onclick="goToStep('step-payment')">Continue to payment</button>
+        <div class="shipping-options">
+          <label class="shipping-option active-option" id="ship-standard" onclick="selectShipping(this, 9, 'Standard (5–7 days)')">
+            <span class="ship-radio"></span>
+            <span class="ship-label">Standard shipping</span>
+            <span class="ship-detail">5–7 business days</span>
+            <span class="ship-price">$9.00</span>
+          </label>
+          <label class="shipping-option" id="ship-express" onclick="selectShipping(this, 16, 'Express (2–3 days)')">
+            <span class="ship-radio"></span>
+            <span class="ship-label">Express shipping</span>
+            <span class="ship-detail">2–3 business days</span>
+            <span class="ship-price">$16.00</span>
+          </label>
+        </div>
+        <button class="btn-checkout" style="width:100%; margin-top:1rem" onclick="goToStep(3)">Continue to payment &rarr;</button>
       </div>
 
       <!-- Step 3: Payment -->
       <div id="step-payment" style="display:none">
-        <button class="modal-back" onclick="goToStep('step-shipping')">← Back</button>
+        <button class="modal-back" onclick="goToStep(2)">&#8592; Back</button>
         <h3 class="modal-title">Payment</h3>
-        <div class="form-section">
-          <input type="text" placeholder="Card number" class="form-input" maxlength="19" oninput="formatCard(this)" id="f-card">
+        <div class="secure-badge">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1L2 3v3.5c0 2.5 2 4.5 4.5 5 2.5-.5 4.5-2.5 4.5-5V3L6.5 1z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
+          Secure checkout — 256-bit SSL encrypted
+        </div>
+        <div class="card-icons">
+          <span class="card-icon">VISA</span>
+          <span class="card-icon">MC</span>
+          <span class="card-icon">AMEX</span>
+          <span class="card-icon">DISC</span>
+        </div>
+        <div class="form-section" style="margin-top:1rem">
+          <label class="input-label">Card number</label>
+          <input type="text" placeholder="1234 5678 9012 3456" class="form-input" maxlength="19" oninput="formatCard(this)" id="f-card">
           <div class="form-row">
-            <input type="text" placeholder="MM / YY" class="form-input" maxlength="7" id="f-exp">
-            <input type="text" placeholder="CVV" class="form-input" maxlength="4" style="max-width:80px" id="f-cvv">
+            <div style="flex:1">
+              <label class="input-label">Expiry</label>
+              <input type="text" placeholder="MM / YY" class="form-input" maxlength="7" oninput="formatExp(this)" id="f-exp">
+            </div>
+            <div style="max-width:100px">
+              <label class="input-label">CVV</label>
+              <input type="text" placeholder="123" class="form-input" maxlength="4" id="f-cvv">
+            </div>
           </div>
-          <input type="text" placeholder="Name on card" class="form-input" id="f-cardname">
+          <label class="input-label">Name on card</label>
+          <input type="text" placeholder="Full name" class="form-input" id="f-cardname">
+          <label class="input-label">Billing ZIP</label>
+          <input type="text" placeholder="ZIP code" class="form-input" maxlength="10" id="f-bzip">
         </div>
-        <div class="modal-total">
-          <span>Total due</span>
-          <span id="modal-total-display">$31.00</span>
+        <div class="order-summary-box">
+          <div class="price-row"><span>Item subtotal</span><span id="pay-subtotal">$22.00</span></div>
+          <div class="price-row"><span id="pay-ship-label">Shipping</span><span id="pay-shipping">$9.00</span></div>
+          <div class="price-row" id="discount-row" style="display:none"><span>Discount</span><span id="pay-discount" style="color:var(--gold)"></span></div>
+          <div class="price-row price-total"><span>Total charged</span><span id="modal-total-display">$31.00</span></div>
         </div>
-        <button class="btn-checkout" style="width:100%" onclick="submitOrder()">Place order</button>
-        <p class="modal-note">This is a demo storefront. No real charges will be made.</p>
+        <button class="btn-checkout place-order-btn" style="width:100%; margin-top:1.25rem" onclick="submitOrder()">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Place order — <span id="btn-total">$31.00</span>
+        </button>
+        <p class="modal-note">Demo store — no real charges will be made.</p>
       </div>
     </div>
   </div>
@@ -343,7 +421,7 @@
     <div class="modal success-modal">
       <div class="success-icon">✓</div>
       <h3>Order confirmed</h3>
-      <p>Thank you. You'll receive a confirmation email shortly with tracking information.</p>
+      <p>Thank you! A confirmation with tracking info is on its way to your inbox.</p>
       <button class="btn-checkout" onclick="closeSuccess()" style="width:100%; margin-top:1.5rem">Back to shop</button>
     </div>
   </div>

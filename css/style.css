@@ -66,8 +66,8 @@ button { cursor:pointer; font-family:var(--sans); border:none; background:none; 
 .feature-item p { font-size:13px; color:var(--light); line-height:1.65; }
 
 /* ── LIFESTYLE STRIP ── */
-.lifestyle-strip { position:relative; width:100%; }
-.lifestyle-strip img { width:100%; height:auto; display:block; }
+.lifestyle-strip { position:relative; width:100%; overflow:visible !important; max-height:none !important; }
+.lifestyle-strip img { width:100% !important; height:auto !important; max-height:none !important; object-fit:unset !important; display:block; }
 .lifestyle-strip-overlay { position:absolute; inset:0; background:linear-gradient(to right,rgba(0,0,0,.55) 0%,rgba(0,0,0,.08) 65%); display:flex; align-items:flex-end; padding:2.5rem 4rem; }
 .lifestyle-strip-text { font-family:var(--serif); font-size:clamp(1.4rem,2.5vw,2.2rem); color:var(--white); font-weight:500; line-height:1.2; }
 .lifestyle-strip-text em { font-style:italic; color:var(--gold); }

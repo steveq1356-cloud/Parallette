@@ -1,4 +1,4 @@
-/* FORM — Portable Parallettes v2 — main.js */
+/* FORM — Portable Parallettes — main.js */
 
 let currentSize = '5.5';
 let currentPrice = 22.00;
@@ -10,16 +10,15 @@ const SHIPPING = 9.00;
 function fmt(n) { return '$' + n.toFixed(2); }
 
 function updateUI() {
-  const subtotal = currentPrice * currentQty;
-  const total = subtotal + SHIPPING;
+  var subtotal = currentPrice * currentQty;
+  var total = subtotal + SHIPPING;
 
   document.getElementById('subtotal').textContent = fmt(subtotal);
   document.getElementById('shipping-cost').textContent = fmt(SHIPPING);
   document.getElementById('total-price').textContent = fmt(total);
-  document.getElementById('config-badge').textContent = currentSize + '" · ' + currentColor;
+  document.getElementById('config-badge').textContent = currentSize + '" \u00b7 ' + currentColor;
 
-  // modal cart step
-  document.getElementById('cart-item-name').textContent = currentSize + '" · ' + currentColor;
+  document.getElementById('cart-item-name').textContent = currentSize + '" \u00b7 ' + currentColor;
   document.getElementById('cart-item-qty').textContent = 'Qty: ' + currentQty + ' pair' + (currentQty > 1 ? 's' : '');
   document.getElementById('cart-item-price-display').textContent = fmt(subtotal);
   document.getElementById('cart-item-img').src = currentImg;
@@ -29,29 +28,24 @@ function updateUI() {
 }
 
 function selectSize(btn) {
-  document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+  var btns = document.querySelectorAll('.size-btn');
+  for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
   btn.classList.add('active');
-  currentSize = btn.dataset.size;
-  currentPrice = parseFloat(btn.dataset.price);
+  currentSize = btn.getAttribute('data-size');
+  currentPrice = parseFloat(btn.getAttribute('data-price'));
   updateUI();
 }
 
 function selectColor(btn) {
-  document.querySelectorAll('.color-btn').forEach(b => {
-    b.classList.remove('active');
-    const chk = b.querySelector('.color-check');
-    if (chk) chk.style.display = 'none';
-  });
+  var btns = document.querySelectorAll('.color-btn');
+  for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
   btn.classList.add('active');
-  const chk = btn.querySelector('.color-check');
-  if (chk) chk.style.display = 'block';
-  currentColor = btn.dataset.color;
-  currentImg = btn.dataset.img;
-  document.getElementById('color-name-display').textContent = currentColor;
 
-  const preview = document.getElementById('config-preview');
-  preview.style.opacity = '0';
-  setTimeout(() => { preview.src = currentImg; preview.style.opacity = '1'; }, 200);
+  currentColor = btn.getAttribute('data-color');
+  currentImg = btn.getAttribute('data-img');
+
+  document.getElementById('color-name-display').textContent = currentColor;
+  document.getElementById('config-preview').src = currentImg;
 
   updateUI();
 }
@@ -63,15 +57,16 @@ function changeQty(delta) {
 }
 
 function addToCart() {
-  const toast = document.getElementById('cart-toast');
+  var toast = document.getElementById('cart-toast');
   toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2200);
+  setTimeout(function() { toast.classList.remove('show'); }, 2200);
 }
 
 function goToStep(id) {
-  ['step-cart', 'step-shipping', 'step-payment'].forEach(s => {
-    document.getElementById(s).style.display = s === id ? 'block' : 'none';
-  });
+  var steps = ['step-cart', 'step-shipping', 'step-payment'];
+  for (var i = 0; i < steps.length; i++) {
+    document.getElementById(steps[i]).style.display = steps[i] === id ? 'block' : 'none';
+  }
 }
 
 function openCheckout() {
@@ -88,47 +83,28 @@ function closeCheckout() {
 
 function submitOrder() {
   closeCheckout();
-  setTimeout(() => {
-    const overlay = document.getElementById('success-overlay');
-    overlay.style.display = 'flex';
-    setTimeout(() => overlay.classList.add('open'), 10);
-  }, 200);
+  var overlay = document.getElementById('success-overlay');
+  overlay.style.display = 'flex';
+  overlay.classList.add('open');
 }
 
 function closeSuccess() {
-  const overlay = document.getElementById('success-overlay');
+  var overlay = document.getElementById('success-overlay');
   overlay.classList.remove('open');
-  setTimeout(() => { overlay.style.display = 'none'; }, 300);
+  overlay.style.display = 'none';
   document.body.style.overflow = '';
 }
 
 function formatCard(input) {
-  let v = input.value.replace(/\D/g, '').substring(0, 16);
+  var v = input.value.replace(/\D/g, '').substring(0, 16);
   input.value = v.replace(/(.{4})/g, '$1 ').trim();
 }
 
-/* Nav scroll effect */
-window.addEventListener('scroll', () => {
-  const nav = document.querySelector('.nav');
+window.addEventListener('scroll', function() {
+  var nav = document.querySelector('.nav');
   nav.style.borderBottomColor = window.scrollY > 60 ? 'rgba(51,51,51,0.8)' : 'var(--border)';
 });
 
-/* Fade-in on scroll */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.feature-item, .testimonial, .stat, .showcase-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(el);
-  });
+document.addEventListener('DOMContentLoaded', function() {
   updateUI();
 });
